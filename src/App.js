@@ -12,10 +12,14 @@ export default function App() {
   const [todoText, setTodoText] = useState("");
   const [todoPriority, setTodoPriority] = useState("");
 
+  // const addTodo = () => {
+  //   const dupTodo = [...todoList];
+  //   dupTodo.push({ text: todoText, priority: todoPriority });
+  //   setTodoList(dupTodo);
+  // };
+
   const addTodo = () => {
-    const dupTodo = [...todoList];
-    dupTodo.push({ text: todoText, priority: todoPriority });
-    setTodoList(dupTodo);
+    setTodoList([...todoList,{ text: todoText, priority: todoPriority }]);
   };
 
   return (
