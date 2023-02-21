@@ -1,16 +1,19 @@
 import React from "react";
 import './todo.css';
 
-const Todo = (props) => {
-    console.log("data todo:", props.todo);
+const Todo = ({todo,id}) => {
+
     let backgroundStyle = '';
-    if(props.todo.priority === 'High') {
+    const {text, priority} = todo;
+
+    if(priority === 'High') {
         backgroundStyle = 'background-red';
-    } else if(props.todo.priority === 'Medium') {
+    } else if(priority === 'Medium') {
         backgroundStyle = 'background-yellow';
     } else {
         backgroundStyle = 'background-green';
     }
+
   return (
     <li
       style={{
@@ -20,9 +23,9 @@ const Todo = (props) => {
         marginBottom: "6px",
       }}
       className={backgroundStyle}
-      key={props.id}
+      key={id}
     >
-      {props.todo.text}
+      {text}
     </li>
   );
 };

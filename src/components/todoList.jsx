@@ -1,13 +1,12 @@
 import React from "react";
 import Todo from "./todo";
 
-const TodoList = (data) => {
-    console.log("data:", data);
+const TodoList = ({data}) => {
   return (
     <div>
       <ul style={{ margin: "auto", width: "100%" }}>
-        {data.props.map((todo, id) => (
-            <Todo todo={todo} key={id} id={id}></Todo>
+        {data.map((todo, id) => (
+            <Todo todo={todo} key={id} id={id} />
         ))}
       </ul>
     </div>
