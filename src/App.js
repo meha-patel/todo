@@ -4,28 +4,39 @@ import TodoList from "./components/todoList";
 
 export default function App() {
   const data = [
-    { text: "Coding", priority: "High" },
-    { text: "Cooking", priority: "Medium" },
-    { text: "Watching Movie", priority: "Low" },
+    { text: "Coding", priority: "High", id: 1 },
+    { text: "Cooking", priority: "Medium", id: 2 },
+    { text: "Watching Movie", priority: "Low", id: 3 },
   ];
   const [todoList, setTodoList] = useState(data);
   const [todoText, setTodoText] = useState("");
   const [todoPriority, setTodoPriority] = useState("");
 
-  // const addTodo = () => {
-  //   const dupTodo = [...todoList];
-  //   dupTodo.push({ text: todoText, priority: todoPriority });
-  //   setTodoList(dupTodo);
-  // };
+  const addTodoHandler = () => {
+    setTodoList([
+      ...todoList,
+      {
+        text: todoText,
+        priority: todoPriority,
+        id: todoList[todoList.length - 1].id + 1,
+      },
+    ]);
+  };
 
-  const addTodo = () => {
-    setTodoList([...todoList,{ text: todoText, priority: todoPriority }]);
+  const removeTodoHandler = (id) => {
+    if (id) {
+      console.log("id:", id);
+      const removeItem = todoList.filter((todo) => {
+        return todo.id !== id;
+      });
+      setTodoList(removeItem);
+    }
   };
 
   return (
     <div className="App">
       <h1>My ToDo List</h1>
-      <TodoList data={todoList}></TodoList>
+      <TodoList data={todoList} onRemoveTodo={removeTodoHandler} />
       <input
         type="text"
         value={todoText}
@@ -44,7 +55,7 @@ export default function App() {
       </select>
       <br />
       <br />
-      <button onClick={addTodo}>Save</button>
+      <button onClick={addTodoHandler}>Save</button>
     </div>
   );
 }
